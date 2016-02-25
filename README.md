@@ -45,5 +45,5 @@ data about your streams.
 This works by listening to all outbound TCP traffic (using the `pcap`
 library).  When a new stream request is observed in the `PMS` logs, the
 destiation IP address **and port** are used to create a packet filter.
-As packest are sent to the client at that IP address and port, the bytes
+As packets are sent to the client at that IP address and port, the bytes
 are counted and used to calculate the effective bandwidth every second.
