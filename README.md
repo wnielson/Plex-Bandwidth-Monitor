@@ -35,6 +35,9 @@ data about your streams.
    due to a race condition between when the stream is detected and when
    Plex reports the stream metadata (at the `/status/sessions` endpoint).
    This shoold be pretty easy to fix.
+4) Currently only works on Linux.  However, `libpcap` is available on
+   most platforms (including Windows via `WinPcap`), so cross-platform
+   support should be fairly easily doable.
 
 
 ## Technical Details
