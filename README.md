@@ -24,20 +24,20 @@ data about your streams.
 
 ## Known Limitations
 
-1) Does not recognize transcoded streams yet (only direct play/stream
-   works at the moment).  This is a simple fix that will be addressed.
-2) If two clients from the same network (i.e. with the same public IP
-   address) request the same file at the same time, then they will not
-   be identified as separate streams.  This is due to the limited data
-   available in the `PMS` logs.  I'm still working on a solution to
-   this.
-3) Occasionally the stream metadata lookup fails to grab the metadata
-   due to a race condition between when the stream is detected and when
-   Plex reports the stream metadata (at the `/status/sessions` endpoint).
-   This shoold be pretty easy to fix.
-4) Currently only works on Linux.  However, `libpcap` is available on
-   most platforms (including Windows via `WinPcap`), so cross-platform
-   support should be fairly easily doable.
+  1. Does not recognize transcoded streams yet (only direct play/stream
+     works at the moment).  This is a simple fix that will be addressed.
+  2. If two clients from the same network (i.e. with the same public IP
+     address) request the same file at the same time, then they will not
+     be identified as separate streams.  This is due to the limited data
+     available in the `PMS` logs.  I'm still working on a solution to
+     this.
+  3. Occasionally the stream metadata lookup fails to grab the metadata
+     due to a race condition between when the stream is detected and when
+     Plex reports the stream metadata (at the `/status/sessions` endpoint).
+     This shoold be pretty easy to fix.
+  4. Currently only works on Linux.  However, `libpcap` is available on
+     most platforms (including Windows via `WinPcap`), so cross-platform
+     support should be fairly easily doable.
 
 
 ## Technical Details
