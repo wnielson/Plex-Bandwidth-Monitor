@@ -12,7 +12,7 @@ the following should do it:
 
 ```
 sudo apt-get install libpcap0.8
-sudo pip install pcap
+apt-get install python-pypcap
 ```
 
 You also need to open ``plex_bwmon.py`` and set your ``PLEX_TOKEN``,
