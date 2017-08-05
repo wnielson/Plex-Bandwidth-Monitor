@@ -2,6 +2,7 @@
 import argparse
 import logging
 import os
+import platform
 import re
 import socket
 import sqlite3
@@ -53,6 +54,7 @@ CREATE TABLE `sessions` (
     `video_type` TEXT,
     `bytes` INTEGER,
     `bps`   REAL,
+    `hostname` TEXT,
     PRIMARY KEY(`id`)
 )"""
 
@@ -122,12 +124,16 @@ def update_sessions(sessions):
                         "video_key":        node.attrib.get('key'),
                         "part_decision":    part.attrib.get('decision'),
                         "video_title":      node.attrib.get('title'),
-                        "video_type":       node.attrib.get('type')
+                        "video_type":       node.attrib.get('type'),
+                        "hostname":         platform.node()
                     }
                 }
             except Exception, e:
                 print "Error creating session:", e
                 continue
+        else:
+            # This can change if the use switches preferences during playback
+            sessions[session_id]['data']["part_decision"] = part.attrib.get('decision')
 
         current_session_ids.append(session_id)
 
@@ -262,8 +268,11 @@ def run():
 
     sessions = {}
     while True:
+        try:
+            expired_sessions = update_sessions(sessions)
+        except:
+            continue
 
-        expired_sessions = update_sessions(sessions)
         for session in sessions.values():
             monitor.add_address(session['data']['player_address'], session)
             update_or_create_session(conn, session)
